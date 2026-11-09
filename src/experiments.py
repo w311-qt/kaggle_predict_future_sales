@@ -125,7 +125,8 @@ def main():
             f"{rq4_summary.rmse_mean[1]:.4f} (raw train target). On holdout raw - clipped is {boot['mean']:.4f}; "
             f"the 95% CI {'includes' if ci[0] <= 0 <= ci[1] else 'excludes'} zero.", "",
             "## RQ5: seed sensitivity",
-            f"Seeds: {seeds}. Variants: default = baseline params; subsample = baseline params + {exp['subsample_variant']}.", "",
+            f"Seeds: {seeds}. Variants: default = baseline params; "
+            f"subsample = baseline params + {exp['subsample_variant']}.", "",
             f"Default LightGBM params: RMSE {'is identical' if default_identical else 'differs'} across seeds "
             f"(max spread over folds {d.loc['default', 'max_spread_across_seeds']:.2e}).", "",
             "Per fold, across seeds", md_table(per_fold), "",

@@ -18,7 +18,9 @@ def rmse(err):
 
 
 def md_table(df):
-    fmt = lambda v: f"{v:.4f}" if isinstance(v, (float, np.floating)) else str(v)
+    def fmt(v):
+        return f"{v:.4f}" if isinstance(v, (float, np.floating)) else str(v)
+
     lines = ["| " + " | ".join(df.columns) + " |", "|" + "---|" * len(df.columns)]
     lines += ["| " + " | ".join(fmt(v) for v in row) + " |" for row in df.itertuples(index=False)]
     return "\n".join(lines)
@@ -97,7 +99,10 @@ def main():
     cfg = load_config(args.config, args.smoke)
 
     months = cfg["val_months"] + cfg["diag_months"]
-    folds = {t: pd.read_csv(reports_path(cfg, "preds", f"fold_{t}.csv.gz"), dtype={"slice": "category"}) for t in months}
+    folds = {
+        t: pd.read_csv(reports_path(cfg, "preds", f"fold_{t}.csv.gz"), dtype={"slice": "category"})
+        for t in months
+    }
     holdout = folds[cfg["holdout_month"]]
 
     per_fold = fold_metrics(folds)
