@@ -1,0 +1,34 @@
+data_dir: data
+reports_dir: reports
+seed: 42
+
+shop_merge: {0: 57, 1: 58, 10: 11}   # old id -> kept id, applied to train and test
+excluded_shops: [9, 20]              # episodic shops, absent from test
+
+price_max: 100000
+cnt_day_max: 1000
+
+clip: [0, 20]
+clip_train_target: true
+
+first_train_month: 12                # earlier months only feed lags
+lags: [1, 2, 3, 6, 12]
+
+val_months: [29, 30, 31, 32, 33]
+holdout_month: 33
+diag_months: [22]
+
+lgbm:
+  n_estimators: 100
+  learning_rate: 0.1
+  num_leaves: 31
+  n_jobs: -1
+  verbose: -1
+
+n_boot: 1000
+item_frac: 1.0                      # share of items used; smoke run overrides
+
+experiments:                         # used only by src/experiments.py
+  seeds: [0, 1, 2, 3, 4]
+  clip_seed: 42                      # seed for the RQ4 comparison (same as baseline)
+  subsample_variant: {subsample: 0.8, subsample_freq: 1, colsample_bytree: 0.8}
