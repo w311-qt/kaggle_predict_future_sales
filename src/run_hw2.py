@@ -317,7 +317,8 @@ def main():
     # mlflow.db stays local (absolute paths, user name), so the run table is exported for the repo
     runs = mlflow.search_runs(experiment_names=[cfg["mlflow"]["experiment"]])
     local = ["artifact_uri", "tags.mlflow.source.name", "tags.mlflow.user"]
-    runs.drop(columns=local, errors="ignore").to_csv(reports_path(cfg, "mlflow_runs.csv"), index=False)
+    stale = ["metrics.delta_vs_full", "metrics.ci_full_low", "metrics.ci_full_high"]  # old names, mlflow keeps them
+    runs.drop(columns=local + stale, errors="ignore").to_csv(reports_path(cfg, "mlflow_runs.csv"), index=False)
     log(start, f"wrote results to {cfg['reports_dir']}")
 
 
