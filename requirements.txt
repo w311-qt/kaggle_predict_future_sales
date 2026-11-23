@@ -4,6 +4,7 @@ scikit-learn==1.9.1   # needed by lightgbm's sklearn API
 lightgbm==4.7.0
 matplotlib==3.11.2
 PyYAML==6.0.3
+mlflow==3.18.0     # experiment tracking for HW2
 
 # notebook only
 jupyterlab==4.6.6

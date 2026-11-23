@@ -7,6 +7,7 @@
 | ДЗ | что сделано | README | результат, RMSE на backtest 29-33 |
 |---|---|---|---|
 | 1 | постановка, EDA, baseline, протокол валидации | [hw1/README.md](hw1/README.md) | LightGBM на 15 лагах 0.778 ± 0.057 |
+| 2 | два улучшения, трекинг в MLflow, шесть абляций | [hw2/README.md](hw2/README.md) | + признаки из названия и профиль магазина 0.760 ± 0.051 |
 
 ## Установка и данные
 
@@ -24,7 +25,7 @@ kaggle competitions download -c competitive-data-science-predict-future-sales -p
 unzip data/competitive-data-science-predict-future-sales.zip -d data
 ```
 
-Быстрая проверка, что всё работает (~5 секунд, 5% товаров):
+Быстрая проверка, что всё работает (~20 секунд, 5% товаров):
 
 ```powershell
 .\.venv\Scripts\python.exe smoke_test.py
@@ -36,12 +37,16 @@ unzip data/competitive-data-science-predict-future-sales.zip -d data
 
 ```text
 hw1/README.md           ДЗ1: постановка, baseline, протокол оценки
+hw2/README.md           ДЗ2: улучшения, эксперименты, абляции
 configs/baseline.yaml   всё настраиваемое: очистка, сетка, лаги, фолды, параметры LightGBM
+configs/hw2.yaml        эксперименты ДЗ2, наследует baseline.yaml
 src/data.py             загрузка, очистка, месячная сетка магазин × товар
-src/features.py         лаговые признаки и срезы A/B/C
+src/features.py         лаговые признаки, срезы A/B/C и новые признаки ДЗ2
 src/train.py            baseline: три модели на одних фолдах, сабмит
 src/evaluate.py         метрики, срезы, кластерный bootstrap, графики
 src/experiments.py      исследовательские вопросы ДЗ1
+src/run_hw2.py          эксперименты ДЗ2: прогон, сравнения, MLflow, графики
+scripts/                запуск baseline и ДЗ2, проверка на утечки
 smoke_test.py           быстрый прогон пайплайна
 docs/                   разбор постановки
 notebooks/eda.ipynb     EDA

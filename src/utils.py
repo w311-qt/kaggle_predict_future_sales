@@ -7,8 +7,11 @@ MODELS = ["zeros", "lag1", "lgbm"]
 
 
 def load_config(path, smoke=False):
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    if "extends" in cfg:
+        with open(cfg.pop("extends"), encoding="utf-8") as f:
+            cfg = {**yaml.safe_load(f), **cfg}
     cfg["smoke"] = smoke
     if smoke:
         cfg["reports_dir"] = str(Path(cfg["reports_dir"]) / "smoke")

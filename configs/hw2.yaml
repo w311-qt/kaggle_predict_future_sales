@@ -1,0 +1,32 @@
+extends: configs/baseline.yaml
+reports_dir: reports/hw2
+
+mlflow: {tracking_uri: "sqlite:///mlflow.db", experiment: pfs-hw2}
+
+hw2:
+  seeds: [0, 1, 2]
+  reference: baseline                # kind of the run every other run is compared with
+
+runs:                                # groups are added on top of the 15 baseline features; lgbm params stay fixed
+  - {id: E0, kind: baseline, groups: [],
+     hypothesis: "Baseline из ДЗ1, точка отсчёта."}
+  - {id: E1, kind: improvement, groups: [siblings, name_flags, new_cat],
+     hypothesis: "У baseline все новинки одной категории получают одинаковый прогноз. Название различает хиты и провалы (русская версия, несколько платформ сразу), поэтому RMSE на срезе C снизится."}
+  - {id: E2, kind: improvement, groups: [recency, shop_cat, price],
+     hypothesis: "На срезе A в основном недопрогнозы. Давность продаж пары, профиль магазина по категории и скидка в t-1 помогут их предсказать, поэтому RMSE на срезе A снизится."}
+  - {id: E3, kind: improvement, groups: [siblings, name_flags, new_cat, recency, shop_cat, price],
+     hypothesis: "Группы бьют в разные срезы, поэтому их эффекты сложатся."}
+  - {id: A1, kind: ablation, parent: E3, ablates: siblings, groups: [name_flags, new_cat, recency, shop_cat, price],
+     hypothesis: "На train-месяцах новинки с 3+ вариантами продают почти в 8 раз больше одиночных. Без этого признака срез C ухудшится."}
+  - {id: A2, kind: ablation, parent: E3, ablates: name_flags, groups: [siblings, new_cat, recency, shop_cat, price],
+     hypothesis: "Русская версия против английской и цифровой это разный спрос. Без флагов срез C ухудшится."}
+  - {id: A3, kind: ablation, parent: E3, ablates: new_cat, groups: [siblings, name_flags, recency, shop_cat, price],
+     hypothesis: "Как продавались новинки категории в прошлом месяце, лучше общего среднего категории. Без признака срез C ухудшится."}
+  - {id: A4, kind: ablation, parent: E3, ablates: recency, groups: [siblings, name_flags, new_cat, shop_cat, price],
+     hypothesis: "Лаги не отличают паузу в продажах от вымирания товара. Без давности и среднего за 6 месяцев срез A ухудшится."}
+  - {id: A5, kind: ablation, parent: E3, ablates: shop_cat, groups: [siblings, name_flags, new_cat, recency, price],
+     hypothesis: "Магазины по-разному специализированы по категориям. Без этого среднего ухудшатся все срезы."}
+  - {id: A6, kind: ablation, parent: E3, ablates: price, groups: [siblings, name_flags, new_cat, recency, shop_cat],
+     hypothesis: "Снижение цены в t-1 предвещает всплеск. Без признака срез A ухудшится."}
+  - {id: E4, kind: improvement, parent: E3, groups: [siblings, name_flags, shop_cat],
+     hypothesis: "Добавлен после абляций: оставлены только группы с положительным вкладом. Ожидаем RMSE не хуже E3 на меньшем числе признаков."}

@@ -18,7 +18,13 @@ def load_sales(cfg):
     sales["shop_id"] = sales.shop_id.replace(cfg["shop_merge"]).astype("int8")
     sales = sales[~sales.shop_id.isin(cfg["excluded_shops"])]
     print(f"sales: {n} -> {len(sales)} rows after cleaning")
-    return sales[["date_block_num", "shop_id", "item_id", "item_cnt_day"]]
+    return sales[["date_block_num", "shop_id", "item_id", "item_price", "item_cnt_day"]]
+
+
+def item_month_price(sales):
+    """Mean item price per (month, item) over cleaned sales."""
+    return (sales.groupby(["date_block_num", "item_id"], as_index=False).item_price.mean()
+                 .rename(columns={"item_price": "price"}))
 
 
 def build_grid(cfg):
