@@ -1,0 +1,96 @@
+sales: 2935849 -> 2930297 rows after cleaning
+grid: 11069101 rows total; month 33: 221802 rows = 42 shops x 5281 items; mean y 0.258; test rows 214200
+sales: 2935849 -> 2930297 rows after cleaning
+[    33s] frame (11069101, 32), memory 0.94 GB
+2026/11/23 10:51:21 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/11/23 10:51:21 INFO mlflow.store.db.utils: Updating database tables
+2026/11/23 10:51:24 INFO mlflow.tracking.fluent: Experiment with name 'pfs-hw2' does not exist. Creating a new experiment.
+[    75s] E0 fold 29: rmse 0.7702
+[   112s] E0 fold 30: rmse 0.7046
+[   151s] E0 fold 31: rmse 0.7526
+[   174s] E0 fold 32: rmse 0.8596
+[   201s] E0 fold 33: rmse 0.7982
+[   211s] E0 fold 22: rmse 0.9688
+[   221s] E0 done: rmse_mean 0.7771, 167.3s of training
+[   253s] E1 fold 29: rmse 0.7672
+[   271s] E1 fold 30: rmse 0.6907
+[   289s] E1 fold 31: rmse 0.7481
+[   309s] E1 fold 32: rmse 0.8459
+[   330s] E1 fold 33: rmse 0.7795
+[   333s] E1 fold 22: rmse 0.9360
+[   338s] E1 done: rmse_mean 0.7663, 109.1s of training
+[   378s] E2 fold 29: rmse 0.7671
+[   422s] E2 fold 30: rmse 0.7009
+[   442s] E2 fold 31: rmse 0.7562
+[   462s] E2 fold 32: rmse 0.8472
+[   483s] E2 fold 33: rmse 0.7933
+[   487s] E2 fold 22: rmse 0.9656
+[   492s] E2 done: rmse_mean 0.7729, 144.1s of training
+[   511s] E3 fold 29: rmse 0.7587
+[   531s] E3 fold 30: rmse 0.6881
+[   551s] E3 fold 31: rmse 0.7490
+[   572s] E3 fold 32: rmse 0.8321
+[   608s] E3 fold 33: rmse 0.7704
+[   617s] E3 fold 22: rmse 0.9262
+[   628s] E3 done: rmse_mean 0.7597, 121.5s of training
+[   673s] A1 fold 29: rmse 0.7590
+[   716s] A1 fold 30: rmse 0.6887
+[   761s] A1 fold 31: rmse 0.7485
+[   809s] A1 fold 32: rmse 0.8428
+[   853s] A1 fold 33: rmse 0.7849
+[   862s] A1 fold 22: rmse 0.9247
+[   871s] A1 done: rmse_mean 0.7648, 226.1s of training
+[   913s] A2 fold 29: rmse 0.7815
+[   957s] A2 fold 30: rmse 0.6931
+[   995s] A2 fold 31: rmse 0.7553
+[  1042s] A2 fold 32: rmse 0.8385
+[  1091s] A2 fold 33: rmse 0.7841
+[  1100s] A2 fold 22: rmse 0.9410
+[  1109s] A2 done: rmse_mean 0.7705, 221.3s of training
+[  1152s] A3 fold 29: rmse 0.7612
+[  1196s] A3 fold 30: rmse 0.6879
+[  1241s] A3 fold 31: rmse 0.7456
+[  1288s] A3 fold 32: rmse 0.8279
+[  1336s] A3 fold 33: rmse 0.7690
+[  1345s] A3 fold 22: rmse 0.9319
+[  1354s] A3 done: rmse_mean 0.7583, 227.4s of training
+[  1396s] A4 fold 29: rmse 0.7660
+[  1438s] A4 fold 30: rmse 0.6869
+[  1483s] A4 fold 31: rmse 0.7482
+[  1530s] A4 fold 32: rmse 0.8347
+[  1578s] A4 fold 33: rmse 0.7705
+[  1586s] A4 fold 22: rmse 0.9198
+[  1595s] A4 done: rmse_mean 0.7613, 224.2s of training
+[  1637s] A5 fold 29: rmse 0.7671
+[  1679s] A5 fold 30: rmse 0.6890
+[  1724s] A5 fold 31: rmse 0.7478
+[  1770s] A5 fold 32: rmse 0.8453
+[  1818s] A5 fold 33: rmse 0.7754
+[  1827s] A5 fold 22: rmse 0.9347
+[  1837s] A5 done: rmse_mean 0.7649, 223.8s of training
+[  1880s] A6 fold 29: rmse 0.7599
+[  1924s] A6 fold 30: rmse 0.6891
+[  1968s] A6 fold 31: rmse 0.7475
+[  2014s] A6 fold 32: rmse 0.8313
+[  2063s] A6 fold 33: rmse 0.7733
+[  2071s] A6 fold 22: rmse 0.9359
+[  2081s] A6 done: rmse_mean 0.7602, 226.4s of training
+[  2121s] E4 fold 29: rmse 0.7588
+[  2162s] E4 fold 30: rmse 0.6882
+[  2204s] E4 fold 31: rmse 0.7475
+[  2247s] E4 fold 32: rmse 0.8286
+[  2293s] E4 fold 33: rmse 0.7701
+[  2301s] E4 fold 22: rmse 0.9465
+[  2310s] E4 done: rmse_mean 0.7586, 211.7s of training
+[  2310s] compared E0
+[  2311s] compared E1
+[  2312s] compared E2
+[  2312s] compared E3
+[  2313s] compared A1
+[  2314s] compared A2
+[  2315s] compared A3
+[  2316s] compared A4
+[  2317s] compared A5
+[  2318s] compared A6
+[  2318s] compared E4
+[  2321s] wrote results to reports/hw2
